@@ -27,12 +27,12 @@ function App() {
 
   return (
     <div className="App">
-      <h1>🦘🇦🇺 Aussie Animal Match 🦘</h1>
+      <h1>🦘🇦🇺 Aussie Animal Match 🇦🇺🦘</h1>
       <button onClick={shuffleCards}>New Game</button>
 
       <div className="card-grid">
         {cards.map(card => (
-          <Card id={card.id} src={card.src}/>
+          <Card key={card.id} card={card}/>
         ))}
       </div>
     </div>
