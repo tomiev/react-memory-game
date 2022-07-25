@@ -1,19 +1,44 @@
+import { useState } from 'react';
 import './App.css';
 
-const cardimg = [
-  { "src": "../public/img/croc.jpg" },
-  { "src": "../public/img/roo.jpg" },
-  { "src": "../public/img/kookaburra.jpg" },
-  { "src": "../public/img/possum.jpg" },
-  { "src": "../public/img/emu.jpg" },
-  { "src": "../public/img/koala.jpg" },
+const cardImages = [
+  { "src": "/img/croc.jpg" },
+  { "src": "/img/roo.jpg" },
+  { "src": "/img/kookaburra.jpg" },
+  { "src": "/img/possum.jpg" },
+  { "src": "/img/emu.jpg" },
+  { "src": "/img/koala.jpg" }
 ];
 
 function App() {
+  const [cards, setCards] = useState([]);
+  const [turns, setTurns] = useState(0);
+
+  /* Shuffle cards */
+  const shuffleCards = () => {
+    const shuffledCards = [...cardImages, ...cardImages]
+      .sort(() => Math.random() - 0.5)
+      .map((card) => ({ ...card, id: Math.random() }))
+
+    setCards(shuffledCards);
+    setTurns(0);
+  };
+
   return (
     <div className="App">
-      <h1>Animal Match</h1>
-      <button>New Game</button>
+      <h1>Aussie Animal Match</h1>
+      <button onClick={shuffleCards}>New Game</button>
+
+      <div className="card-grid">
+        {cards.map(card => (
+          <div className='card' key={card.id}>
+            <div>
+              <img className="front" src={card.src} alt="Card front" />
+              <img className="back" src="/img/cover.jpg" alt="Card back" />
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
