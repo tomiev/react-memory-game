@@ -3,12 +3,12 @@ import './App.css';
 import Card from './components/Card';
 
 const cardImages = [
-  { "src": "/img/croc.jpg" },
-  { "src": "/img/roo.jpg" },
-  { "src": "/img/kookaburra.jpg" },
-  { "src": "/img/possum.jpg" },
-  { "src": "/img/emu.jpg" },
-  { "src": "/img/koala.jpg" }
+  { "src": "/img/croc.jpg", matched: false },
+  { "src": "/img/roo.jpg", matched: false },
+  { "src": "/img/kookaburra.jpg", matched: false },
+  { "src": "/img/possum.jpg", matched: false },
+  { "src": "/img/emu.jpg", matched: false },
+  { "src": "/img/koala.jpg", matched: false }
 ];
 
 function App() {
@@ -34,21 +34,33 @@ function App() {
   };
 
   /* Reset turn after each pair compared */
-  const resetTurn = (turns) => {
+  const resetTurn = () => {
     setChoiceOne(null);
     setChoiceTwo(null);
-    setTurns(turns => turns + 1);
+    setTurns(prevTurns => prevTurns + 1);
   }
 
   /* Compare card choices */
   useEffect(() => {
     if (choiceTwo) {
-      choiceOne.src === choiceTwo.src ? console.log('Match') : console.log('Fail');
-      resetTurn(turns);
+      if (choiceOne.src === choiceTwo.src) {
+        setCards(prevCards => {
+          return prevCards.map(card => {
+            if (card.src === choiceOne.src) {
+              return {...card, matched: true}
+            } else {
+              return card
+            };
+          });
+        });
+        resetTurn();
+      } else {
+        resetTurn();
+      };
     }
-  }, [choiceTwo]);
+  }, [choiceOne, choiceTwo]);
 
-
+  console.log(cards)
 
   return (
     <div className="App">
