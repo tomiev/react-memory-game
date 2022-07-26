@@ -3,7 +3,9 @@
 }
 
 .card img {
-  width: 100%;
+  width: 7rem;
+  height: 9rem;
+  object-fit: cover;
   display: block;
   border: 2px solid #fff;
   border-radius: 6px;
