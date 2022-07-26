@@ -16,7 +16,7 @@ function App() {
   const [turns, setTurns] = useState(0);
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
-
+  const [disabled, setDisabled] = useState(false);
 
   /* Shuffle cards */
   const shuffleCards = () => {
@@ -33,16 +33,13 @@ function App() {
     choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
   };
 
-  /* Reset turn after each pair compared */
-  const resetTurn = () => {
-    setChoiceOne(null);
-    setChoiceTwo(null);
-    setTurns(prevTurns => prevTurns + 1);
-  }
 
   /* Compare card choices and determine if matched */
   useEffect(() => {
+
     if (choiceTwo) {
+      setDisabled(true);
+
       if (choiceOne.src === choiceTwo.src) {
         setCards(prevCards => {
           return prevCards.map(card => {
@@ -60,6 +57,14 @@ function App() {
     }
   }, [choiceOne, choiceTwo]);
 
+  /* Reset turn after each pair compared */
+  const resetTurn = () => {
+    setChoiceOne(null);
+    setChoiceTwo(null);
+    setTurns(prevTurns => prevTurns + 1);
+    setDisabled(false);
+  }
+
   return (
     <div className="App">
       <h1>🦘🇦🇺 Aussie Animal Match 🇦🇺🦘</h1>
@@ -72,6 +77,7 @@ function App() {
             card={card}
             handleChoice={handleChoice}
             flipped={card === choiceOne || card === choiceTwo || card.matched === true}
+            disabled={disabled}
           />
         ))}
       </div>
