@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Card from './components/Card';
 
@@ -28,16 +28,33 @@ function App() {
     setTurns(0);
   };
 
-  /* Handle a choice */
+  /* Handle card choices */
   const handleChoice = (card) => {
-    console.log(card);
+    choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
   };
+
+  /* Reset turn after each pair compared */
+  const resetTurn = (turns) => {
+    setChoiceOne(null);
+    setChoiceTwo(null);
+    setTurns(turns => turns + 1);
+  }
+
+  /* Compare card choices */
+  useEffect(() => {
+    if (choiceTwo) {
+      choiceOne.src === choiceTwo.src ? console.log('Match') : console.log('Fail');
+      resetTurn(turns);
+    }
+  }, [choiceTwo]);
+
+
 
   return (
     <div className="App">
       <h1>🦘🇦🇺 Aussie Animal Match 🇦🇺🦘</h1>
       <button onClick={shuffleCards}>New Game</button>
-
+      <p>Turns: { turns }</p>
       <div className="card-grid">
         {cards.map(card => (
           <Card
