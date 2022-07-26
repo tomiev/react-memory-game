@@ -5,6 +5,7 @@
 .card img {
   width: 9rem;
   height: 9rem;
+  margin: auto;
   object-fit: cover;
   display: block;
   border: 2px solid #fff;
@@ -35,15 +36,11 @@
 }
 
 @media only screen and (max-width: 425px) {
-  .card img {
-    height: 5rem;
-    width: 5rem;
+  .card {
+    overflow: hidden;
   }
-}
 
-@media only screen and (max-width: 768px) {
   .card img {
-    height: 7rem;
-    width: 7rem;
+    border: none;
   }
 }
