@@ -74,7 +74,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>🦘🇦🇺 Aussie Animal Match 🇦🇺🦘</h1>
+      <h1>🦘 Aussie Animal Memory Game 🐨</h1>
       <button onClick={shuffleCards}>New Game</button>
       <p>Turns: { turns }</p>
       <div className="card-grid">

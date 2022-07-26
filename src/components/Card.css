@@ -3,7 +3,7 @@
 }
 
 .card img {
-  width: 7rem;
+  width: 9rem;
   height: 9rem;
   object-fit: cover;
   display: block;
@@ -32,4 +32,18 @@
 .flipped .back {
   transform: rotateY(90deg);
   transition-delay: 0s;
+}
+
+@media only screen and (max-width: 425px) {
+  .card img {
+    height: 5rem;
+    width: 5rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .card img {
+    height: 7rem;
+    width: 7rem;
+  }
 }
