@@ -24,6 +24,8 @@ function App() {
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }))
 
+    setChoiceOne(null);
+    setChoiceTwo(null);
     setCards(shuffledCards);
     setTurns(0);
   };
@@ -36,7 +38,6 @@ function App() {
 
   /* Compare card choices and determine if matched */
   useEffect(() => {
-
     if (choiceTwo) {
       setDisabled(true);
 
@@ -64,6 +65,12 @@ function App() {
     setTurns(prevTurns => prevTurns + 1);
     setDisabled(false);
   }
+
+  /* Start a new game automatically on page load */
+  useEffect(() => {
+    shuffleCards();
+  }, []);
+
 
   return (
     <div className="App">
