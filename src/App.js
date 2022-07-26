@@ -40,7 +40,7 @@ function App() {
     setTurns(prevTurns => prevTurns + 1);
   }
 
-  /* Compare card choices */
+  /* Compare card choices and determine if matched */
   useEffect(() => {
     if (choiceTwo) {
       if (choiceOne.src === choiceTwo.src) {
@@ -55,12 +55,10 @@ function App() {
         });
         resetTurn();
       } else {
-        resetTurn();
+        setTimeout(() => resetTurn(), 1000);
       };
     }
   }, [choiceOne, choiceTwo]);
-
-  console.log(cards)
 
   return (
     <div className="App">
@@ -73,6 +71,7 @@ function App() {
             key={card.id}
             card={card}
             handleChoice={handleChoice}
+            flipped={card === choiceOne || card === choiceTwo || card.matched === true}
           />
         ))}
       </div>
