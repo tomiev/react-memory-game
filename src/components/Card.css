@@ -1,8 +1,9 @@
 .card {
   position: relative;
   width: 9rem;
-  height: 9rem;
+  height: auto;
   margin: auto;
+  cursor: grab;
 }
 
 .card img {
