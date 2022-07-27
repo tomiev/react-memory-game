@@ -77,18 +77,18 @@ function App() {
       <h1>Aussie Animal Memory Game</h1>
       <p>🦘 🐨</p>
       <button onClick={shuffleCards}>New Game</button>
-      <p>Turns: { turns }</p>
       <div className="card-grid">
         {cards.map(card => (
           <Card
-            key={card.id}
-            card={card}
-            handleChoice={handleChoice}
-            flipped={card === choiceOne || card === choiceTwo || card.matched === true}
-            disabled={disabled}
+          key={card.id}
+          card={card}
+          handleChoice={handleChoice}
+          flipped={card === choiceOne || card === choiceTwo || card.matched === true}
+          disabled={disabled}
           />
-        ))}
+          ))}
       </div>
+      <p>Turns: { turns }</p>
     </div>
   );
 }
